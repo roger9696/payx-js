@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayX JS Test</title>
+    <script src="./dist/index.global.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #4f46e5;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+        }
+        button:hover {
+            background-color: #4338ca;
+            transform: translateY(-1px);
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-break: break-all;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>PayX SDK Test</h1>
+    <button id="pay-button">Pay GHS 10.00</button>
+    <div id="result"></div>
+
+    <script>
+        const payButton = document.getElementById('pay-button');
+        const resultDiv = document.getElementById('result');
+
+        payButton.addEventListener('click', () => {
+            // Using the global PayX object from our build
+            const handler = PayX.setup({
+                key: 'px_test_fc35deb991684b74b70ccf084af5c3c5', // Using the key we found earlier
+                email: 'test@example.com',
+                amount: 10.00,
+                onSuccess: (data) => {
+                    resultDiv.style.display = 'block';
+                    resultDiv.style.backgroundColor = '#d1fae5';
+                    resultDiv.style.color = '#065f46';
+                    resultDiv.textContent = 'Success: ' + JSON.stringify(data);
+                },
+                onCancel: () => {
+                    resultDiv.style.display = 'block';
+                    resultDiv.style.backgroundColor = '#fef3c7';
+                    resultDiv.style.color = '#92400e';
+                    resultDiv.textContent = 'Payment Cancelled';
+                },
+                onError: (error) => {
+                    resultDiv.style.display = 'block';
+                    resultDiv.style.backgroundColor = '#fee2e2';
+                    resultDiv.style.color = '#991b1b';
+                    resultDiv.textContent = 'Error: ' + JSON.stringify(error);
+                }
+            });
+
+            handler.open();
+        });
+    </script>
+</body>
+</html>
