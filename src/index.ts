@@ -7,6 +7,7 @@ export interface PayXOptions {
   lastname?: string;
   phoneNumber?: string;
   metadata?: Record<string, any>;
+  baseUrl?: string; // Optional base URL for local testing
   onSuccess?: (response: any) => void;
   onCancel?: () => void;
   onError?: (error: any) => void;
@@ -53,7 +54,9 @@ class PayXPopup {
 
   private createIframe() {
     this.iframe = document.createElement('iframe');
-    const checkoutUrl = 'https://pay-x-beryl.vercel.app/checkout';
+    const defaultBaseUrl = 'https://pay-x-beryl.vercel.app';
+    const baseUrl = this.options.baseUrl || defaultBaseUrl;
+    const checkoutUrl = `${baseUrl.replace(/\/$/, '')}/checkout`;
     
     // Build query params
     const params = new URLSearchParams({
@@ -84,8 +87,11 @@ class PayXPopup {
 
   private setupListeners() {
     const handleMessage = (event: MessageEvent) => {
+      const defaultBaseUrl = 'https://pay-x-beryl.vercel.app';
+      const expectedOrigin = (this.options.baseUrl || defaultBaseUrl).replace(/\/$/, '');
+      
       // Security check: Only trust messages from your domain
-      if (event.origin !== 'https://pay-x-beryl.vercel.app') return;
+      if (event.origin !== expectedOrigin) return;
 
       const { type, data } = event.data;
 

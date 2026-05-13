@@ -7,6 +7,7 @@ interface PayXOptions {
     lastname?: string;
     phoneNumber?: string;
     metadata?: Record<string, any>;
+    baseUrl?: string;
     onSuccess?: (response: any) => void;
     onCancel?: () => void;
     onError?: (error: any) => void;
