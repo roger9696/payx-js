@@ -53,7 +53,7 @@ class PayXPopup {
 
   private createIframe() {
     this.iframe = document.createElement('iframe');
-    const checkoutUrl = 'http://localhost:3000/checkout'; // We will build this page in the main app
+    const checkoutUrl = 'https://pay-x-beryl.vercel.app/checkout';
     
     // Build query params
     const params = new URLSearchParams({
@@ -85,7 +85,7 @@ class PayXPopup {
   private setupListeners() {
     const handleMessage = (event: MessageEvent) => {
       // Security check: Only trust messages from your domain
-      if (event.origin !== 'http://localhost:3000') return;
+      if (event.origin !== 'https://pay-x-beryl.vercel.app') return;
 
       const { type, data } = event.data;
 
