@@ -107,7 +107,7 @@ class PayXPopup {
     };
 
     this.iframe = document.createElement('iframe');
-    const defaultBaseUrl = 'https://pay-x-beryl.vercel.app';
+    const defaultBaseUrl = 'https://payx.company';
     const baseUrl = this.options.baseUrl || defaultBaseUrl;
     const checkoutUrl = `${baseUrl.replace(/\/$/, '')}/checkout`;
     
@@ -183,7 +183,7 @@ class PayXPopup {
 
   private setupListeners() {
     const handleMessage = (event: MessageEvent) => {
-      const defaultBaseUrl = 'https://pay-x-beryl.vercel.app';
+      const defaultBaseUrl = 'https://payx.company';
       const expectedOrigin = (this.options.baseUrl || defaultBaseUrl).replace(/\/$/, '');
       
       if (event.origin !== expectedOrigin) return;

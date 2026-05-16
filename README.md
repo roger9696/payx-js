@@ -11,7 +11,7 @@ npm install payx-js
 Or use via CDN:
 
 ```html
-<script src="https://cdn.payx.app/js/v1/payx.js"></script>
+<script src="https://cdn.payx.company/js/v1/payx.js"></script>
 ```
 
 ## Usage
