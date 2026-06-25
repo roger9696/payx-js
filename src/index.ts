@@ -40,12 +40,10 @@ class PayXPopup {
       left: '0',
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       zIndex: '999999',
-      backdropFilter: 'blur(8px)',
       transition: 'opacity 0.3s ease',
       opacity: '0'
     });
