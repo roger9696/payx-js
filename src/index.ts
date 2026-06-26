@@ -40,6 +40,9 @@ class PayXPopup {
       left: '0',
       width: '100%',
       height: '100%',
+      background: 'rgba(15, 23, 42, 0.65)',
+      backdropFilter: 'blur(8px)',
+      webkitBackdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -88,7 +91,9 @@ class PayXPopup {
       alignItems: 'center',
       justifyContent: 'center',
       transition: 'all 0.2s ease',
-      zIndex: '1000001'
+      zIndex: '1000001',
+      opacity: '0',
+      pointerEvents: 'none'
     });
     closeBtn.onmouseover = () => {
       closeBtn.style.background = 'rgba(0, 0, 0, 0.1)';
@@ -169,6 +174,10 @@ class PayXPopup {
           if (this.iframe) {
             this.iframe.style.opacity = '1';
             this.iframe.style.transform = 'translateY(0)';
+          }
+          if (closeBtn) {
+            closeBtn.style.opacity = '1';
+            closeBtn.style.pointerEvents = 'auto';
           }
         }, 50);
       }

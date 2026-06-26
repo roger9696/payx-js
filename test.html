@@ -55,6 +55,7 @@
             // Using the global PayX object from our build
             const handler = PayX.setup({
                 key: 'px_test_YOUR_PUBLIC_KEY', // Use your test public key here
+                baseUrl: 'http://localhost:3000',
                 email: 'test@example.com',
                 amount: 10.00,
                 onSuccess: (data) => {
